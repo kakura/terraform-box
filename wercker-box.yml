@@ -1,0 +1,20 @@
+name: kakura/terraform-box
+version: 0.0.1
+inherits: ubuntu
+type: language
+description: install terraform in box
+keywords:
+  - terraform
+    script: |
+        sudo apt-get update
+        sudo apt-get -f install
+        sudo apt-get install -y wget unzip curl
+        # create terraform directory and export PATH
+        mkdir -p $HOME/terraform
+        export PATH=$PATH:$HOME/terraform
+        # download terraform
+        cd $HOME/terraform
+        wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+        unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+        rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+        ls -la
